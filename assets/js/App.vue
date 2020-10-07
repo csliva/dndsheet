@@ -1,5 +1,10 @@
-<template>
-  <h1>Hello {{this.name}}</h1>
+<template lang="pug">
+  .app
+    aside
+      p Aside
+    main
+      h1 PUG WORKS
+      p Welcome, {{ name}}
 </template>
 
 <script>
@@ -12,4 +17,3 @@ export default {
  },
 }
 </script>
-</style>

@@ -22,8 +22,13 @@ module.exports = {
             }
           },
           {
+            // MiniCssExtractPlugin.loader
             test: /\.sass$/,
             use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+          },
+          {
+            test: /\.pug$/,
+            loader: 'pug-plain-loader'
           }
         ]
     },
