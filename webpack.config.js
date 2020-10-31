@@ -24,7 +24,20 @@ module.exports = {
           {
             // MiniCssExtractPlugin.loader
             test: /\.sass$/,
-            use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+            use: [
+              MiniCssExtractPlugin.loader, 
+              'css-loader', 
+              {
+                loader: 'sass-loader',
+                options: {
+                  indentedSyntax: true,
+                  // sass-loader version >= 8
+                  sassOptions: {
+                    indentedSyntax: true
+                  }
+                }
+              }
+            ]
           },
           {
             test: /\.pug$/,
