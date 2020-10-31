@@ -30,6 +30,11 @@
         p Welcome, {{ name}}
 </template>
 
+<style lang="sass">
+p 
+  color: green
+</style>
+
 <script>
 export default {
   name: 'App',
