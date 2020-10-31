@@ -40,7 +40,7 @@ export default {
   name: 'App',
   data: () => {
     return {
-      name: "Colt"
+      // data might go here
     }
   }
 }
