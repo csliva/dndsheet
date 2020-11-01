@@ -26,7 +26,7 @@
         p Health, AC, Initiative, Dice Roller, etc.
       .unit
         h1 Main Area
-        p Tabs: Skills, Combat, Spellcasting, Features, Equipment, Journal/Notes
+        Tabs
         p Welcome, {{ name}}
 </template>
 
@@ -36,11 +36,16 @@ p
 </style>
 
 <script>
+import Tabs from './Components/Tabs.vue';
+
 export default {
   name: 'App',
+  components: {
+    Tabs
+  },
   data: () => {
     return {
-      // data might go here
+      name: "Colt"
     }
   }
 }
