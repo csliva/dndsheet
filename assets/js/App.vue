@@ -24,8 +24,16 @@
 </template>
 
 <style lang="sass">
-p
-  color: green
+  // temp components
+  .unit
+    padding: 20px
+    border: solid 1px #eee
+  .line
+    margin: 0
+  .title
+    margin-bottom: 20px
+    font-weight: bold
+    text-transform: uppercase
 </style>
 
 <script>
