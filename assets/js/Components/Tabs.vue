@@ -31,7 +31,8 @@
 </template>
 
 <style lang="sass">
-
+  .tabview
+    margin: 1em 0
 </style>
 
 <script>
