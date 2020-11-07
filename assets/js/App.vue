@@ -1,26 +1,12 @@
 <template lang="pug">
   .app
     aside
-      .unit
-        .title General
-        .line Race, Subraces
-        .line Class, Archetypes
-        .line Portrait
-        .line Inspiration
-      .unit
-        .line XP Bar
-      .unit
-        .title Abilities
-        ul
-          li(v-for="ability in abilities") {{ ability.name }} ({{ ability.abr }})
+      GeneralBlock
+      XpBlock
+      AbilityBlock
     main
-      .unit
-        .title Combat
-        .line Health, AC, Initiative, Dice Roller, etc.
-      .unit
-        .title Main Area
-        Tabs
-        .line {{ msg }}
+      CombatBlock
+      MainBlock
 </template>
 
 <style lang="sass">
@@ -37,12 +23,20 @@
 </style>
 
 <script>
-import Tabs from './Components/Tabs.vue';
+import AbilityBlock from './Components/Blocks/Abilities.vue'
+import CombatBlock from './Components/Blocks/Combat.vue'
+import GeneralBlock from './Components/Blocks/General.vue'
+import MainBlock from './Components/Blocks/Main.vue'
+import XpBlock from './Components/Blocks/Xp.vue'
 
 export default {
   name: 'App',
   components: {
-    Tabs
+    AbilityBlock,
+    CombatBlock,
+    GeneralBlock,
+    MainBlock,
+    XpBlock
   },
   data: () => {
     return {
