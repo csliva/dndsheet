@@ -24,6 +24,7 @@
         p
           b Combat
         p Health, AC, Initiative, Dice Roller, etc.
+        DiceRoller
       .unit
         h1 Main Area
         Tabs
@@ -37,11 +38,13 @@ p
 
 <script>
 import Tabs from './Components/Tabs.vue';
+import DiceRoller from './Components/DiceRoller.vue';
 
 export default {
   name: 'App',
   components: {
-    Tabs
+    Tabs,
+    DiceRoller
   },
   data: () => {
     return {
