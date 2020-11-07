@@ -19,7 +19,7 @@
         .line Health, AC, Initiative, Dice Roller, etc.
       .unit
         .title Main Area
-        .line Tabs: Skills, Combat, Spellcasting, Features, Equipment, Journal/Notes
+        Tabs
         .line {{ msg }}
 </template>
 
@@ -37,8 +37,13 @@
 </style>
 
 <script>
+import Tabs from './Components/Tabs.vue';
+
 export default {
   name: 'App',
+  components: {
+    Tabs
+  },
   data: () => {
     return {
       msg: "Vue App Loaded!",
@@ -49,7 +54,8 @@ export default {
         { name: 'Intelligence', abr: 'Int' },
         { name: 'Wisdom', abr: 'Wis' },
         { name: 'Charisma', abr: 'Cha' }
-      ]
+      ],
+      name: "colt"
     }
   }
 }
