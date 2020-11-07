@@ -25,8 +25,9 @@
           @click='setTab("Journal")'
           :class='activeView === "Journal" ? "active" : ""'
           ) Journal/Notes
-        keep-alive
-          component(:is="activeView")
+        div.tabview
+          keep-alive
+            component(:is="activeView")
 </template>
 
 <style lang="sass">
@@ -34,6 +35,8 @@ p
     color: green
 .active
     color: green
+.tabview
+  margin: 1em 0
 </style>
 
 <script>
