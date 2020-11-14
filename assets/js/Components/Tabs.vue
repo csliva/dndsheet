@@ -31,12 +31,8 @@
 </template>
 
 <style lang="sass">
-p 
-    color: green
-.active
-    color: green
-.tabview
-  margin: 1em 0
+  .tabview
+    margin: 1em 0
 </style>
 
 <script>
