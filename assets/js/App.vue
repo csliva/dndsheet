@@ -1,39 +1,40 @@
 <template lang="pug">
   .app
-    aside.aside
+    aside
       .unit
-        p
-          b General
-        p Race, Subraces
-        p Class, Archetypes
-        p Portrait
-        p Inspiration
-      .unit XP Bar
+        .title General
+        .line Race, Subraces
+        .line Class, Archetypes
+        .line Portrait
+        .line Inspiration
       .unit
-        p
-          b Abilities
+        .line XP Bar
+      .unit
+        .title Abilities
         ul
-          li Strength
-          li Dexterity
-          li Constitution
-          li Intelligence
-          li Wisdom
-          li Charisma
-    main.main
+          li(v-for="ability in abilities") {{ ability.name }} ({{ ability.abr }})
+    main
       .unit
-        p
-          b Combat
-        p Health, AC, Initiative, Dice Roller, etc.
+        .title Combat
+        .line Health, AC, Initiative, Dice Roller, etc.
         DiceRoller
       .unit
-        h1 Main Area
+        .title Main Area
         Tabs
-        p Welcome, {{ name}}
+        .line {{ msg }}
 </template>
 
 <style lang="sass">
-p 
-  color: green
+  // temp components
+  .unit
+    padding: 20px
+    border: solid 1px #eee
+  .line
+    margin: 0
+  .title
+    margin-bottom: 20px
+    font-weight: bold
+    text-transform: uppercase
 </style>
 
 <script>
@@ -48,7 +49,16 @@ export default {
   },
   data: () => {
     return {
-      name: "Colt"
+      msg: "Vue App Loaded!",
+      abilities: [
+        { name: 'Strength', abr: 'Str' },
+        { name: 'Dexterity', abr: 'Dex' },
+        { name: 'Constitution', abr: 'Con' },
+        { name: 'Intelligence', abr: 'Int' },
+        { name: 'Wisdom', abr: 'Wis' },
+        { name: 'Charisma', abr: 'Cha' }
+      ],
+      name: "colt"
     }
   }
 }

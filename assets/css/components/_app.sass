@@ -6,16 +6,22 @@
   display: grid
   height: 100vh
   grid-template-columns: 1fr 3fr
-  border: solid 4px #ddd
-  .main
+  border: solid 6px #ddd
+  // EL: all direct children grid
+  > *
     display: grid
-    // height: 100vh
+  // EL
+  main
     grid-template-rows: 1fr 6fr
-  .aside
-    display: grid
-    // height: 100vh
+  aside
     grid-template-rows: 3fr 1fr 6fr
-  .unit
-    display: block
-    padding: 20px
-    border: solid 1px #eee
+  // MQ: when the viewport is too short
+  @media screen and (max-height: 600px)
+    border-color: red
+    height: 600px
+  // MQ: when the viewport is too narrow
+  @media screen and (max-width: 600px)
+    border-color: green
+  // MQ: when the viewport is too short and too narrow
+  @media screen and (max-height: 600px) and (max-width: 600px)
+    border-color: blue

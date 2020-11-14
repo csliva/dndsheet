@@ -1,16 +1,20 @@
 <template lang="pug">
-div#diceroller
-    button roll
-    input(type="number")
-    button d4
-    input(type="number")
-    button d6
-    input(type="number")
-    button d8
-    input(type="number")
-    button d10
-    input(type="number")
-    button d12
-    input(type="number")
-    button d20
+div#diceroller.col
+    div.row
+        button d4
+        button d6
+        button d8
+        button d10
+        button d12
+        button d20
+    div.row
+        
 </template>
+<style lang="sass">
+.row
+    display: flex
+    flex-direction: row
+.col
+    display: flex
+    flex-direction: column
+</style>
