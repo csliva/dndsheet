@@ -42,22 +42,34 @@
       display: grid
       grid-template-columns: repeat(6, 1fr)
     &__btn
-      color: #aaa
+      color: transparentize(#fff, 0.45)
       background: transparent
-      border: 0
-      border-bottom: solid 1px transparentize(#fff, 0.85)
+      border: solid 1px transparentize(#fff, 0.9)
+      border-bottom-color: transparentize(#fff, 0.85)
       text-transform: uppercase
       font-weight: bold
       font-size: 12px
+      position: relative
+      &:before
+        content: ''
+        position: absolute
+        top: 0
+        left: 0
+        height: 3px
+        width: 100%
+        background: $clr-link
+        opacity: 0.25
       &.active
         color: $clr-link
         background-color: transparentize(lighten($clr-body, 3%), 0.8)
-        border: solid 1px transparentize(#fff, 0.85)
-        border-bottom: 0
+        border: solid 1px transparentize(#fff, 0.75)
+        border-bottom-color: transparent
+        &:before
+          opacity: 1
     &__pane
-      border: solid 1px transparentize(#fff, 0.85)
+      border: solid 1px transparentize(#fff, 0.75)
       border-top: 0
-      padding: 20px
+      padding: 40px
       background-color: transparentize(lighten($clr-body, 3%), 0.8)
 </style>
 

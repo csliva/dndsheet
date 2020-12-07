@@ -1,11 +1,12 @@
 <template lang="pug">
   .unit(:data-title='title')
-    .abi(v-for="ability in abilities")
-      .abi__name {{ ability.name }}
-      span.abi__score {{ getScore(ability.abr) }}
-      button.abi__adjust(@click='modalAdjusts') + / -
-      span.abi__mod {{ getMod(ability.abr) }}
-      span.abi__save Saving Throw...
+    .abi
+      .abi__item(v-for="ability in abilities")
+        .abi__name {{ ability.name }}
+        span.abi__score {{ getScore(ability.abr) }}
+        button.abi__adjust(@click='modalAdjusts') + / -
+        span.abi__mod {{ getMod(ability.abr) }}
+        span.abi__save Saving Throw...
 </template>
 
 <script>
@@ -42,11 +43,14 @@ export default {
   @import "./assets/css/settings/_config.sass"
   @import "./assets/css/utilities/_mixins.sass"
   .abi
-    display: block
-    padding-bottom: 10px
-    margin-bottom: 10px
-    position: relative
-    border-bottom: solid 1px transparentize(#fff, 0.85)
+    display: grid
+    grid-template-rows: repeat(6, 1fr)
+    height: 100%
+    &__item
+      display: block
+      padding-top: 10px
+      position: relative
+      border-bottom: solid 1px transparentize(#fff, 0.85)
     &__name
       text-transform: uppercase
       color: #fff
