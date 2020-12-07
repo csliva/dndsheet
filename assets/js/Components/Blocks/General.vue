@@ -1,17 +1,20 @@
 <template lang="pug">
   .unit(:data-title='title')
     .gen
+      h2.gen__name
+        span {{ stats.name }}
+        button.gen__load(@click='load()') Next
       .gen__section
-        h2.gen__name
-          span {{ stats.name }}
-          button(@click='load()') Next
+        // .gen__info {{ stats.title }}
         .gen__info
-          button.gen__race {{ stats.race }}
           button.gen__class(
             @mouseover="tooltips.cls = true" @mouseleave="tooltips.cls = false"
-          ) {{ concatClasses }}
-          .gen__tooltip(:class="{ active : tooltips.cls}")
-            div(v-for="cls in stats.classes") {{ cls.name + ' ' + (cls.sub ? ', ' + cls.sub : '') }} ({{ cls.level }})
+          ) {{ stats.race }} {{ concatClasses }} - Level {{ totalLevel }}
+          .tooltip(:class="{ active : tooltips.cls}")
+            .tooltip__title Race Info:
+            .tooltip__info {{ stats.race + (stats.subrace ? ', '+ stats.subrace : '') }}
+            .tooltip__title Class Info:
+            .tooltip__info(v-for="cls in stats.classes") {{ cls.name + (cls.sub ? ', ' + cls.sub : '') }} ({{ cls.level }})
       .gen__section
         .gen__title Proficiency Bonus: {{ proficiencyBonus }}
         .gen__title inspiration: {{ stats.inspiration }}
@@ -22,7 +25,6 @@ export default {
   props: ['title', 'stats', 'load'],
   data: () => {
     return {
-      msg: 'testing...',
       tooltips: {
         race: false,
         cls: false
@@ -55,7 +57,7 @@ export default {
     height: 100%
     &__section
       display: block
-      margin-bottom: 10px
+      // margin-bottom: 10px
       &:last-child
         margin-bottom: 0
     &__name
@@ -65,6 +67,7 @@ export default {
       font-size: 35px
       line-height: 46px
       vertical-align: middle
+      margin-bottom: 10px
       span
         margin-right: 20px
     &__title
@@ -73,7 +76,7 @@ export default {
     &__info
       font-style: italic
       position: relative
-      // margin-bottom: 10px
+      margin-bottom: 6px
       button
         +transition(color)
         display: inline-block
@@ -81,26 +84,32 @@ export default {
         color: transparentize($clr-link, 0.35)
         background: transparent
         border: 0
-        margin-right: 6px
+        margin-right: 8px
         &:hover
           color: $clr-link
-    &__tooltip
-      +box-shadow()
-      +transition(opacity)
-      position: absolute
+    &__load
+      vertical-align: middle
+  // tooltip
+  .tooltip
+    +box-shadow()
+    +transition(opacity)
+    position: absolute
+    display: block
+    max-width: 300px
+    top: 150%
+    left: 0
+    padding: 10px 20px
+    border: solid 1px transparentize(#fff, 0.45)
+    background-color: lighten($clr-body, 1%)
+    opacity: 0
+    pointer-events: none
+    line-height: 20px
+    &__title
+      font-weight: bold
+    &__info
       display: block
-      width: 300px
-      top: 110%
-      left: 0
-      padding: 10px 20px
-      border: solid 1px transparentize(#fff, 0.65)
-      background-color: lighten($clr-body, 2%)
-      opacity: 0
-      pointer-events: none
-      line-height: 20px
-      &.active
-        opacity: 1
-        pointer-events: auto
-
+    &.active
+      opacity: 1
+      pointer-events: auto
 
 </style>
