@@ -1,17 +1,20 @@
 <template lang="pug">
-  .unit
+  .unit(:data-title='title')
     .gen
-      h2.gen__name
-        span {{ stats.name }}
-        button(@click='load()') Next
-      .gen__info
-        span.gen__race {{ stats.race }}
-        span.gen__class(v-for="cls in stats.classes") {{ cls.name }}
-    .gen
-      .gen__title Proficiency Bonus: {{ proficiencyBonus }}
-      .gen__title inspiration: {{ stats.inspiration }}
-
-
+      .gen__section
+        h2.gen__name
+          span {{ stats.name }}
+          button(@click='load()') Next
+        .gen__info
+          button.gen__race {{ stats.race }}
+          button.gen__class(
+            @mouseover="tooltips.cls = true" @mouseleave="tooltips.cls = false"
+          ) {{ concatClasses }}
+          .gen__tooltip(:class="{ active : tooltips.cls}")
+            div(v-for="cls in stats.classes") {{ cls.name + ' ' + (cls.sub ? ', ' + cls.sub : '') }} ({{ cls.level }})
+      .gen__section
+        .gen__title Proficiency Bonus: {{ proficiencyBonus }}
+        .gen__title inspiration: {{ stats.inspiration }}
 </template>
 
 <script>
@@ -19,7 +22,11 @@ export default {
   props: ['title', 'stats', 'load'],
   data: () => {
     return {
-      msg: 'testing...'
+      msg: 'testing...',
+      tooltips: {
+        race: false,
+        cls: false
+      }
     }
   },
   computed: {
@@ -27,20 +34,30 @@ export default {
       return (this.stats.classes.length === 1) ? false : true
     },
     totalLevel: function(){
-      let lvl = this.stats.classes.map( x => x.level )
+      let lvl = this.stats.classes.map( c => c.level )
       return lvl.reduce((a, b) => a + b, 0)
     },
     proficiencyBonus: function() {
       return 1 + Math.ceil(this.totalLevel / 4)
+    },
+    concatClasses: function(){
+      let cls = this.stats.classes.map( c => c.name)
+      return cls.join('/')
     }
   }
 }
 </script>
 
 <style lang="sass">
+  @import "./assets/css/settings/_config.sass"
+  @import "./assets/css/utilities/_mixins.sass"
   .gen
-    display: block
-    margin-bottom: 10px
+    height: 100%
+    &__section
+      display: block
+      margin-bottom: 10px
+      &:last-child
+        margin-bottom: 0
     &__name
       font-weight: bold
       display: inline-block
@@ -55,8 +72,35 @@ export default {
       font-size: 12px
     &__info
       font-style: italic
-      span
+      position: relative
+      // margin-bottom: 10px
+      button
+        +transition(color)
         display: inline-block
-        margin-right: 10px
+        padding: 0
+        color: transparentize($clr-link, 0.35)
+        background: transparent
+        border: 0
+        margin-right: 6px
+        &:hover
+          color: $clr-link
+    &__tooltip
+      +box-shadow()
+      +transition(opacity)
+      position: absolute
+      display: block
+      width: 300px
+      top: 110%
+      left: 0
+      padding: 10px 20px
+      border: solid 1px transparentize(#fff, 0.65)
+      background-color: lighten($clr-body, 2%)
+      opacity: 0
+      pointer-events: none
+      line-height: 20px
+      &.active
+        opacity: 1
+        pointer-events: auto
+
 
 </style>
