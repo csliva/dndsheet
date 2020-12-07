@@ -1,14 +1,15 @@
 <template lang="pug">
   .unit
-    .title {{ title }}
+    .unit__title {{ title }}
     .line Health, AC, Initiative, Dice Roller, etc.
 </template>
 
 <script>
 export default {
+  props: ['title'],
   data: () => {
     return {
-      title: 'COMBAT'
+      
     }
   }
 }

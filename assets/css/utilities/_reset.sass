@@ -19,11 +19,13 @@ body
   line-height: $blh
   color: $clr-text
   font-family: $font-main
+  +gradient-bg-diag($clr-body, $clr-body-alt)
+  // background-image: url(../../images/cartographer.png)
 
 h1, h2, h3, h4, h5, h6
   margin-top: 0
   margin-bottom: $blh
-  color: $clr-purp-alt
+  color: $clr-title
   font-family: $font-alt
 
 p
@@ -31,12 +33,12 @@ p
   margin-bottom: $blh
 
 a
-  color: $clr-pink
+  color: $clr-link
   text-decoration: none
   &:hover,
   &:focus,
   &:active
-    color: darken($clr-pink, 15%)
+    color: darken($clr-link, 15%)
 
 button
   &:hover

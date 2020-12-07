@@ -1,38 +1,64 @@
 <template lang="pug">
-    div
-        p Tabs: Skills, Combat, Spellcasting, Features, Equipment, Journal/Notes
-        button(
+    .tabs
+      .tabs__nav
+        button.tabs__btn(
           @click='setTab("Skills")'
           :class='activeView === "Skills" ? "active" : ""'
         ) Skills
-        button(
+        button.tabs__btn(
           @click='setTab("Combat")'
           :class='activeView === "Combat" ? "active" : ""'
-          ) Combat
-        button(
+        ) Combat
+        button.tabs__btn(
           @click='setTab("Spellcasting")'
           :class='activeView === "Spellcasting" ? "active" : ""'
-          ) Spellcasting
-        button(
+        ) Spellcasting
+        button.tabs__btn(
           @click='setTab("Features")'
           :class='activeView === "Features" ? "active" : ""'
-          ) Features
-        button(
+        ) Features
+        button.tabs__btn(
           @click='setTab("Equipment")'
           :class='activeView === "Equipment" ? "active" : ""'
-          ) Equipment
-        button(
+        ) Equipment
+        button.tabs__btn(
           @click='setTab("Journal")'
           :class='activeView === "Journal" ? "active" : ""'
-          ) Journal/Notes
-        div.tabview
-          keep-alive
-            component(:is="activeView")
+        ) Journal
+      .tabs__pane
+        keep-alive
+          component(:is="activeView")
 </template>
 
 <style lang="sass">
-  .tabview
-    margin: 1em 0
+  @import "./assets/css/settings/_config.sass"
+  @import "./assets/css/utilities/_mixins.sass"
+  .tabs
+    display: grid
+    grid-template-rows: 1fr 9fr
+    height: 100%
+    +box-shadow()
+    &__nav
+      display: grid
+      grid-template-columns: repeat(6, 1fr)
+    &__btn
+      color: #aaa
+      background: transparent
+      border: 0
+      border-bottom: solid 1px transparentize(#fff, 0.85)
+      text-transform: uppercase
+      font-weight: bold
+      font-size: 12px
+      &.active
+        color: $clr-link
+        background-color: transparentize(lighten($clr-body, 3%), 0.8)
+        border: solid 1px transparentize(#fff, 0.85)
+        border-bottom: 0
+    &__pane
+      border: solid 1px transparentize(#fff, 0.85)
+      border-top: 0
+      padding: 20px
+      background-color: transparentize(lighten($clr-body, 3%), 0.8)
 </style>
 
 <script>
