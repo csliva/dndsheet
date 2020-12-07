@@ -51,6 +51,8 @@ export default {
       padding-top: 10px
       position: relative
       border-bottom: solid 1px transparentize(#fff, 0.85)
+      &:last-child
+        border-bottom: 0
     &__name
       text-transform: uppercase
       color: #fff
