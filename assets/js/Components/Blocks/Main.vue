@@ -1,12 +1,12 @@
 <template lang="pug">
   .unit(:data-title='title')
-    Tabs
+    Tabs(:abilities="abilities")
 </template>
 
 <script>
 import Tabs from '../Tabs.vue'
 export default {
-  props: ['title'],
+  props: ['title', 'abilities'],
   components: {
     Tabs
   },

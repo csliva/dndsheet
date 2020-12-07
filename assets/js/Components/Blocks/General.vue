@@ -5,16 +5,17 @@
         span {{ stats.name }}
         button.gen__load(@click='load()') Next
       .gen__section
-        // .gen__info {{ stats.title }}
         .gen__info
           button.gen__class(
             @mouseover="tooltips.cls = true" @mouseleave="tooltips.cls = false"
           ) {{ stats.race }} {{ concatClasses }} - Level {{ totalLevel }}
+          // Tooltip - Start 
           .tooltip(:class="{ active : tooltips.cls}")
             .tooltip__title Race Info:
             .tooltip__info {{ stats.race + (stats.subrace ? ', '+ stats.subrace : '') }}
             .tooltip__title Class Info:
             .tooltip__info(v-for="cls in stats.classes") {{ cls.name + (cls.sub ? ', ' + cls.sub : '') }} ({{ cls.level }})
+          // Tooltip - End
       .gen__section
         .gen__title Proficiency Bonus: {{ proficiencyBonus }}
         .gen__title inspiration: {{ stats.inspiration }}

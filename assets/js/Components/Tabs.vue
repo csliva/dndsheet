@@ -27,7 +27,7 @@
         ) Journal
       .tabs__pane
         keep-alive
-          component(:is="activeView")
+          component(:is="activeView", :abilities="abilities")
 </template>
 
 <style lang="sass">
@@ -90,6 +90,7 @@ export default {
     Equipment,
     Journal
   },
+  props: ['abilities'],
   data: () => {
     return {
       activeView: "Skills",

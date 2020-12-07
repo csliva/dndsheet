@@ -5,12 +5,12 @@
       AbilityBlock(title="Abilities", :stats="stats.abilities")
     main
       CombatBlock(title="Combat")
-      MainBlock(title="Main")
+      MainBlock(title="Main", :abilities="stats.abilities")
 </template>
 
 <style lang="sass">
   .unit
-    padding: 20px
+    padding: 10px 20px
     &__title
       margin-bottom: 20px
       font-weight: bold

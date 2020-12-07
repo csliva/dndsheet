@@ -1,3 +1,5 @@
 <template lang="pug">
-    h1 Combat
+  .pane
+    p Weapons / Attacks
+    p Armor 
 </template>
