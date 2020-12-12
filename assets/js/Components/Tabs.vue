@@ -97,9 +97,9 @@ export default {
     }
   },
   methods: {
-      setTab: function(view) {
-        this.activeView = view
-      }
+    setTab: function(view) {
+      this.activeView = view
+    }
   }
 }
 </script>

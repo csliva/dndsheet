@@ -3,8 +3,8 @@
     .abi
       .abi__item(v-for="ability in abilities")
         .abi__name {{ ability.name }}
+          button.abi__adjust(@click='modalAdjusts') + / -
         span.abi__score {{ getScore(ability.abr) }}
-        button.abi__adjust(@click='modalAdjusts') + / -
         span.abi__mod {{ getMod(ability.abr) }}
         span.abi__save Saving Throw...
 </template>
@@ -57,24 +57,25 @@ export default {
       text-transform: uppercase
       color: #fff
       font-size: 12px
-      margin-bottom: 4px
+      margin-bottom: 6px
       font-weight: bold
     &__mod,
     &__score
       display: inline-block
-      padding: 3px 8px
+      padding: 2px 8px
       font-weight: bold
     &__mod
-      background: #fff
+      background-color: transparentize(#fff, 0.15)
       color: lighten($clr-body, 8%)
       font-style: italic
       text-align: center
       width: 40px
       border-radius: 4px
     &__score
+      color: $clr-link
       display: inline-block
       padding-left: 0
-      width: 24px
+      width: 30px
     &__adjust
       +transition(color)
       background: transparent
