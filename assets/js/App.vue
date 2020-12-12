@@ -1,25 +1,22 @@
 <template lang="pug">
-  .app
+  .app(v-if="stats")
     aside
-      GeneralBlock
-      XpBlock
-      AbilityBlock
+      GeneralBlock(title="General", :stats="stats.general", :load="loadChar")
+      AbilityBlock(title="Abilities", :stats="stats.abilities")
     main
-      CombatBlock
-      MainBlock
+      CombatBlock(title="Combat")
+      MainBlock(title="Main", :abilities="stats.abilities")
 </template>
 
 <style lang="sass">
-  // temp components
   .unit
-    padding: 20px
-    border: solid 1px #eee
+    padding: 10px 20px
+    &__title
+      margin-bottom: 20px
+      font-weight: bold
+      text-transform: uppercase
   .line
     margin: 0
-  .title
-    margin-bottom: 20px
-    font-weight: bold
-    text-transform: uppercase
 </style>
 
 <script>
@@ -27,7 +24,6 @@ import AbilityBlock from './Components/Blocks/Abilities.vue'
 import CombatBlock from './Components/Blocks/Combat.vue'
 import GeneralBlock from './Components/Blocks/General.vue'
 import MainBlock from './Components/Blocks/Main.vue'
-import XpBlock from './Components/Blocks/Xp.vue'
 
 export default {
   name: 'App',
@@ -35,21 +31,25 @@ export default {
     AbilityBlock,
     CombatBlock,
     GeneralBlock,
-    MainBlock,
-    XpBlock
+    MainBlock
   },
+  props: ['characters'],
   data: () => {
     return {
-      msg: "Vue App Loaded!",
-      abilities: [
-        { name: 'Strength', abr: 'Str' },
-        { name: 'Dexterity', abr: 'Dex' },
-        { name: 'Constitution', abr: 'Con' },
-        { name: 'Intelligence', abr: 'Int' },
-        { name: 'Wisdom', abr: 'Wis' },
-        { name: 'Charisma', abr: 'Cha' }
-      ],
-      name: "colt"
+      stats: false,
+      charIndex: 0,
+      charCount: 0
+    }
+  },
+  mounted: function() {
+    this.stats = this.characters[0]
+    this.charCount = this.characters.length
+  },
+  methods: {
+    loadChar: function(){
+      let i = this.charIndex
+      this.charIndex = (i + 1 >= this.charCount) ? 0 : i + 1
+      this.stats = this.characters[this.charIndex]
     }
   }
 }

@@ -1,18 +1,18 @@
 <template lang="pug">
-  .unit
-    .title {{ title }}
-    Tabs
+  .unit(:data-title='title')
+    Tabs(:abilities="abilities")
 </template>
 
 <script>
 import Tabs from '../Tabs.vue'
 export default {
+  props: ['title', 'abilities'],
   components: {
     Tabs
   },
   data: () => {
     return {
-      title: 'MAIN'
+      // title: 'MAIN'
     }
   }
 }

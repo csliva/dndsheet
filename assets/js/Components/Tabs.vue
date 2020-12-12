@@ -1,38 +1,76 @@
 <template lang="pug">
-    div
-        p Tabs: Skills, Combat, Spellcasting, Features, Equipment, Journal/Notes
-        button(
+    .tabs
+      .tabs__nav
+        button.tabs__btn(
           @click='setTab("Skills")'
           :class='activeView === "Skills" ? "active" : ""'
         ) Skills
-        button(
+        button.tabs__btn(
           @click='setTab("Combat")'
           :class='activeView === "Combat" ? "active" : ""'
-          ) Combat
-        button(
+        ) Combat
+        button.tabs__btn(
           @click='setTab("Spellcasting")'
           :class='activeView === "Spellcasting" ? "active" : ""'
-          ) Spellcasting
-        button(
+        ) Spellcasting
+        button.tabs__btn(
           @click='setTab("Features")'
           :class='activeView === "Features" ? "active" : ""'
-          ) Features
-        button(
+        ) Features
+        button.tabs__btn(
           @click='setTab("Equipment")'
           :class='activeView === "Equipment" ? "active" : ""'
-          ) Equipment
-        button(
+        ) Equipment
+        button.tabs__btn(
           @click='setTab("Journal")'
           :class='activeView === "Journal" ? "active" : ""'
-          ) Journal/Notes
-        div.tabview
-          keep-alive
-            component(:is="activeView")
+        ) Journal
+      .tabs__pane
+        keep-alive
+          component(:is="activeView", :abilities="abilities")
 </template>
 
 <style lang="sass">
-  .tabview
-    margin: 1em 0
+  @import "./assets/css/settings/_config.sass"
+  @import "./assets/css/utilities/_mixins.sass"
+  .tabs
+    display: grid
+    grid-template-rows: 1fr 9fr
+    height: 100%
+    +box-shadow()
+    &__nav
+      display: grid
+      grid-template-columns: repeat(6, 1fr)
+    &__btn
+      color: transparentize(#fff, 0.45)
+      background: transparent
+      border: solid 1px transparentize(#fff, 0.9)
+      border-bottom-color: transparentize(#fff, 0.85)
+      text-transform: uppercase
+      font-weight: bold
+      font-size: 12px
+      position: relative
+      &:before
+        content: ''
+        position: absolute
+        top: 0
+        left: 0
+        height: 3px
+        width: 100%
+        background: $clr-link
+        opacity: 0.25
+      &.active
+        color: $clr-link
+        background-color: transparentize(lighten($clr-body, 3%), 0.8)
+        border: solid 1px transparentize(#fff, 0.75)
+        border-bottom-color: transparent
+        &:before
+          opacity: 1
+    &__pane
+      border: solid 1px transparentize(#fff, 0.75)
+      border-top: 0
+      padding: 40px
+      background-color: transparentize(lighten($clr-body, 3%), 0.8)
 </style>
 
 <script>
@@ -52,15 +90,16 @@ export default {
     Equipment,
     Journal
   },
+  props: ['abilities'],
   data: () => {
     return {
       activeView: "Skills",
     }
   },
   methods: {
-      setTab: function(view) {
-        this.activeView = view
-      }
+    setTab: function(view) {
+      this.activeView = view
+    }
   }
 }
 </script>

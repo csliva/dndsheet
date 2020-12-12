@@ -6,7 +6,8 @@
   display: grid
   height: 100vh
   grid-template-columns: 1fr 3fr
-  border: solid 6px #ddd
+  grid-gap: 20px
+  padding: 20px
   // EL: all direct children grid
   > *
     display: grid
@@ -14,10 +15,9 @@
   main
     grid-template-rows: 1fr 6fr
   aside
-    grid-template-rows: 3fr 1fr 6fr
+    grid-template-rows: 3fr 6fr
   // MQ: when the viewport is too short
   @media screen and (max-height: 600px)
-    border-color: red
     height: 600px
   // MQ: when the viewport is too narrow
   @media screen and (max-width: 600px)
