@@ -46,7 +46,10 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['*', '.js', '.jsx', 'vue']
+        extensions: ['*', '.js', '.jsx', 'vue'],
+        alias: {
+          'assets': path.resolve(__dirname, './assets'),
+        }
     },
     output: {
         path: path.join(__dirname, "public"),
