@@ -45,11 +45,14 @@ import DiceControl from './Blocks/DiceControl.vue'
             },
             test: function(){
                 let res = rand(this.getDice())
+                alert(res)
             },
             clear: function(){
                 let dice = this.getDice()
-                for (var i=0;i<this.dice.length;i++){
-                    this.$refs[this.dice[i].name].num = 0;
+                console.log(this.$refs)
+                console.log(dice)
+                for (var i=0;i<dice.length;i++){
+                    this.$refs[dice[i].name].num = 0
                 }
             }
         }
