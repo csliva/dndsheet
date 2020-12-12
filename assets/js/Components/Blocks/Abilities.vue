@@ -11,9 +11,11 @@
           span.abi__score {{ getScore(ability.abr) }}
           span.abi__save
             span Save:
-            button.abi__prof(:class="{ active : stats[ability.abr].save }")
+            button.abi__prof(
+              :class="{ active : stats[ability.abr].save }",
+              @click="toggleProf(ability.name)"
+            )
             span {{ getSave(ability.abr) | bonus }}
-
 
 </template>
 
@@ -50,6 +52,9 @@ export default {
     },
     modalAdjusts: function(){
       alert('Modal: Bonus and Penalty adjusts')
+    },
+    toggleProf: function(ability){
+      alert('Toggle Proficiency: '+ability)
     }
   },
   filters: {
