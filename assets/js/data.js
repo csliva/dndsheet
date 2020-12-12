@@ -13,7 +13,12 @@ export const characters = [
       inspiration: 0
     },
     abilities: {
-      str: 12, dex: 16, con: 8, int: 12, wis: 11, cha: 15
+      str: {score: 12, save: false},
+      dex: {score:16, save: false},
+      con: {score: 8, save: true},
+      int: {score: 12, save: false},
+      wis: {score: 11, save: false},
+      cha: {score: 15, save: true}
     }
   },
   // Lurg
@@ -29,7 +34,12 @@ export const characters = [
       inspiration: 1
     },
     abilities: {
-      str: 14, dex: 12, con: 16, int: 10, wis: 8, cha: 15
+      str: {score: 14, save: false},
+      dex: {score:12, save: true},
+      con: {score: 16, save: false},
+      int: {score: 10, save: false},
+      wis: {score: 8, save: false},
+      cha: {score: 15, save: true}
     }
   },
   // Krosk
@@ -45,7 +55,12 @@ export const characters = [
       inspiration: 0
     },
     abilities: {
-      str: 16, dex: 8, con: 14, int: 12, wis: 15, cha: 12
+      str: {score: 16, save: true},
+      dex: {score: 8, save: false},
+      con: {score: 14, save: false},
+      int: {score: 12, save: false},
+      wis: {score: 15, save: true},
+      cha: {score: 12, save: false}
     }
   }
 ]

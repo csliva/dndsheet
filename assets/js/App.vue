@@ -2,7 +2,7 @@
   .app(v-if="stats")
     aside
       GeneralBlock(title="General", :stats="stats.general", :load="loadChar")
-      AbilityBlock(title="Abilities", :stats="stats.abilities")
+      AbilityBlock(title="Abilities", :stats="stats.abilities", :prof="profBonus")
     main
       CombatBlock(title="Combat")
       MainBlock(title="Main", :abilities="stats.abilities")
@@ -44,6 +44,17 @@ export default {
   mounted: function() {
     this.stats = this.characters[0]
     this.charCount = this.characters.length
+  },
+  computed: {
+    profBonus: function() {
+      if(this.stats){
+        let lvl = this.stats.general.classes.map( c => c.level )
+        lvl = lvl.reduce((a, b) => a + b, 0)
+        return 1 + Math.ceil(lvl / 4)
+      } else {
+        return 'no prof....'
+      }
+    }
   },
   methods: {
     loadChar: function(){

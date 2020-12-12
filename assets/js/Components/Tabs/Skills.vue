@@ -5,7 +5,7 @@
     ul(v-if="currentSkills.length")
       li(v-for="skill in currentSkills")
         span {{ skill.name }} ({{ skill.ability }})
-        span {{ getMod(abilities[skill.ability]) }}
+        span {{ getMod(abilities[skill.ability].score) }}
         span.tbd Proficiency Y/N
         span.tbd Misc. Bonus/Penalties
         span.tbd Total

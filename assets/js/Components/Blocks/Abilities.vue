@@ -6,12 +6,11 @@
           span {{ getMod(ability.abr) }}
           button.abi__adjust(@click='modalAdjusts')
             IconCog
-        .abi__inner
-          .abi__name {{ ability.name }}
-          .abi__bar
-            span.abi__score {{ getScore(ability.abr) }}
-            button.abi__prof o
-            span.abi__save Saving Throw...
+        .abi__bar
+          span.abi__score {{ getScore(ability.abr) }}
+          span.abi__save
+            span {{ getSave(ability.abr) }}
+              button.abi__prof(:class="{ active : stats[ability.abr].save }")
 
 
 </template>
@@ -19,7 +18,7 @@
 <script>
 import IconCog from 'assets/images/icons/cog.svg';
 export default {
-  props: ['title', 'stats'],
+  props: ['title', 'stats', 'prof'],
   components: {
     IconCog
   },
@@ -37,11 +36,15 @@ export default {
   },
   methods: {
     getScore: function(ability) {
-      return this.stats[ability]
+      return this.stats[ability].score
     },
     getMod: function(ability) {
-      let mod = Math.floor((this.stats[ability] - 10) / 2)
-      return (mod >= 1 ? '+' : '') + mod
+      let mod = Math.floor((this.stats[ability].score - 10) / 2)
+      return mod
+    },
+    getSave: function(ability){
+      let saveProf = this.stats[ability].save
+      return saveProf ? this.prof + this.getMod(ability) : this.getMod(ability)
     },
     modalAdjusts: function(){
       alert('Modal: Bonus and Penalty adjusts')
@@ -58,16 +61,12 @@ export default {
     height: 12px
     fill: $clr-link
   .abi
-    // display: grid
-    // grid-template-rows: repeat(6, 1fr)
-    // height: 100%
-    // grid-gap: 10px
     &__item
       display: block
       position: relative
-      // border: dotted 1px transparentize(#fff, 0.9)
       height: 60px
       margin-bottom: 20px
+      padding-top: 20px
     &__name
       text-transform: uppercase
       color: #fff
@@ -77,8 +76,9 @@ export default {
       padding-left: 70px
     &__bar
       background: transparentize(lighten($clr-body, 10%), 0.7)
-      padding: 4px
       padding-left: 70px
+      height: 40px
+      line-height: 40px
     &__mod,
     &__score
       display: inline-block
@@ -94,11 +94,12 @@ export default {
       left: 0
       color: #333
       border: solid 1px $clr-body
+      font-size: 16px
     &__score
       color: $clr-link
       display: inline-block
-      padding-left: 0
-      width: 30px
+      text-align: center
+      width: 60px
     &__adjust
       appearance: none
       position: absolute
@@ -118,9 +119,19 @@ export default {
         width: 12px
         height: 12px
         fill: $clr-body-alt
+    &__prof
+      padding: 0
+      width: 16px
+      height: 16px
+      border: solid 1px $clr-link
+      border-radius: 100%
+      text-align: center
+      color: $clr-link
+      background: transparent
+      &.active
+        background-color: $clr-link
+        color: $clr-body
     &__save
-      padding: 3px 12px
-      font-size: 12px
-      font-style: italic
-      opacity: 0.65
+      display: inline-block
+      border: solid 1px #fff
 </style>
