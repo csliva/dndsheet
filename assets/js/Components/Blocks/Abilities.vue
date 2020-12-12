@@ -3,14 +3,16 @@
     .abi
       .abi__item(v-for="ability in abilities")
         span.abi__mod
-          span {{ getMod(ability.abr) }}
+          span {{ getMod(ability.abr) | bonus }}
           button.abi__adjust(@click='modalAdjusts')
             IconCog
         .abi__bar
+          h4 {{ ability.name }}
           span.abi__score {{ getScore(ability.abr) }}
           span.abi__save
-            span {{ getSave(ability.abr) }}
-              button.abi__prof(:class="{ active : stats[ability.abr].save }")
+            span Save:
+            button.abi__prof(:class="{ active : stats[ability.abr].save }")
+            span {{ getSave(ability.abr) | bonus }}
 
 
 </template>
@@ -49,6 +51,11 @@ export default {
     modalAdjusts: function(){
       alert('Modal: Bonus and Penalty adjusts')
     }
+  },
+  filters: {
+    bonus: function(value){
+      return (value > 0) ? '+'+value : value
+    }
   }
 }
 </script>
@@ -75,10 +82,16 @@ export default {
       font-weight: bold
       padding-left: 70px
     &__bar
+      position: relative
+      z-index: 0
       background: transparentize(lighten($clr-body, 10%), 0.7)
       padding-left: 70px
       height: 40px
       line-height: 40px
+      h4
+        position: absolute
+        top: -35px
+        left: 70px
     &__mod,
     &__score
       display: inline-block
@@ -90,6 +103,7 @@ export default {
       background: #fff
       border-radius: 100%
       position: absolute
+      z-index: 10
       bottom: 0
       left: 0
       color: #333
@@ -133,5 +147,9 @@ export default {
         color: $clr-body
     &__save
       display: inline-block
-      border: solid 1px #fff
+      border: dotted 1px transparentize(#fff, 0.8)
+      padding: 0 20px
+      span,
+      button
+        margin-right: 10px
 </style>
