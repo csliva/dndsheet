@@ -3,15 +3,20 @@
     .abi
       .abi__item(v-for="ability in abilities")
         .abi__name {{ ability.name }}
-          button.abi__adjust(@click='modalAdjusts') + / -
+          button.abi__adjust(@click='modalAdjusts') +/-
+          IconCog.icon
         span.abi__score {{ getScore(ability.abr) }}
         span.abi__mod {{ getMod(ability.abr) }}
         span.abi__save Saving Throw...
 </template>
 
 <script>
+import IconCog from './assets/images/icons/cog.svg';
 export default {
   props: ['title', 'stats'],
+  components: {
+    IconCog
+  },
   data: () => {
     return {
       abilities: [
@@ -42,6 +47,8 @@ export default {
 <style lang="sass">
   @import "./assets/css/settings/_config.sass"
   @import "./assets/css/utilities/_mixins.sass"
+  .icon
+    color: red
   .abi
     display: grid
     grid-template-rows: repeat(6, 1fr)
@@ -84,6 +91,10 @@ export default {
       color: transparentize($clr-link, 0.35)
       padding: 3px 8px
       margin-right: 10px
+      img
+        width: 10px
+        height: 10px
+        color: $clr-link
       &:hover
         color: $clr-link
     &__save

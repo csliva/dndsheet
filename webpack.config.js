@@ -38,6 +38,10 @@ module.exports = {
           {
             test: /\.pug$/,
             loader: 'pug-plain-loader'
+          },
+          {
+            test: /\.svg$/,
+            loader: 'vue-svg-loader'
           }
         ]
     },
