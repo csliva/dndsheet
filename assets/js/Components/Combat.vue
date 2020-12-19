@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import DiceRoller from "../DiceRoller.vue";
+import DiceRoller from "./DiceRoller.vue";
 
 export default {
   props: ['title'],
