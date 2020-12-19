@@ -1,10 +1,10 @@
 <template lang="pug">
   .app(v-if="stats")
     aside
-      GeneralBlock(title="General", :stats="stats.general", :load="loadChar")
-      AbilityBlock(title="Abilities", :stats="stats.abilities", :prof="profBonus")
+      General(title="General", :stats="stats.general", :load="loadChar")
+      Abilities(title="Abilities", :stats="stats.abilities", :prof="profBonus")
     main
-      CombatBlock(title="Combat")
+      Combat(title="Combat")
       Tabs(:abilities="stats.abilities")
 </template>
 
@@ -20,17 +20,17 @@
 </style>
 
 <script>
-import AbilityBlock from './Components/Abilities.vue'
-import CombatBlock from './Components/Combat.vue'
-import GeneralBlock from './Components/General.vue'
+import Abilities from './Components/Abilities.vue'
+import Combat from './Components/Combat.vue'
+import General from './Components/General.vue'
 import Tabs from './Components/Tabs.vue'
 
 export default {
   name: 'App',
   components: {
-    AbilityBlock,
-    CombatBlock,
-    GeneralBlock,
+    Abilities,
+    Combat,
+    General,
     Tabs
   },
   props: ['characters'],
