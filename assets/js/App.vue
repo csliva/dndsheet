@@ -5,7 +5,7 @@
       AbilityBlock(title="Abilities", :stats="stats.abilities", :prof="profBonus")
     main
       CombatBlock(title="Combat")
-      MainBlock(title="Main", :abilities="stats.abilities")
+      Tabs(:abilities="stats.abilities")
 </template>
 
 <style lang="sass">
@@ -20,10 +20,10 @@
 </style>
 
 <script>
-import AbilityBlock from './Components/Blocks/Abilities.vue'
-import CombatBlock from './Components/Blocks/Combat.vue'
-import GeneralBlock from './Components/Blocks/General.vue'
-import MainBlock from './Components/Blocks/Main.vue'
+import AbilityBlock from './Components/Abilities.vue'
+import CombatBlock from './Components/Combat.vue'
+import GeneralBlock from './Components/General.vue'
+import Tabs from './Components/Tabs.vue'
 
 export default {
   name: 'App',
@@ -31,7 +31,7 @@ export default {
     AbilityBlock,
     CombatBlock,
     GeneralBlock,
-    MainBlock
+    Tabs
   },
   props: ['characters'],
   data: () => {

@@ -1,4 +1,5 @@
 <template lang="pug">
+  .unit
     .tabs
       .tabs__nav
         button.tabs__btn(
