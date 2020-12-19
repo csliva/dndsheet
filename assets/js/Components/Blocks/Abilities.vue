@@ -16,7 +16,6 @@
               @click="toggleProf(ability.name)"
             )
             span {{ getSave(ability.abr) | bonus }}
-
 </template>
 
 <script>
