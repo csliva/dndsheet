@@ -6,11 +6,17 @@
       .cell Initiative
       .cell Speed
       .cell Dice Roller
+        DiceRoller
 </template>
 
 <script>
+import DiceRoller from "../DiceRoller.vue";
+
 export default {
   props: ['title'],
+  components: {
+    DiceRoller
+  },
   data: () => {
     return {
 
